@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Void Main's Web Front-end Playgound</title>
+        <script>
+          function debug(msg) {
+            var log = document.getElementById("debuglog");
+            
+            if(!log) {
+              log = document.createElement("div");
+              log.id = "debuglog";
+              log.innerHTML = "<h1>Debug Log</h1>";
+              document.body.appendChild(log);
+            }
+            
+            var pre = document.createElement("pre");
+            var text = document.createTextNode(msg);
+            pre.appendChild(text);
+            log.appendChild(pre);
+          }
+          
+          function hide(e, reflow) {
+            if(reflow) {
+              e.style.display = "none";
+            } else {
+              e.style.visibility = "hidden";
+            }
+          }
+
+          function moveon() {
+            var answer = confirm("Ready to move on?");
+            if(answer) window.location = "http://www.google.com";
+          }
+
+          window.onclick = function() {
+            // do nothing
+          }
+        </script>
+    </head>
+    <body>
+        <h1>Void Main's Web Front-End Playground</h1>
+        <button onclick="hide(this, true); debug('hide button 1')">Hide1</button>
+        <button onclick="hide(this); debug('hide button 2')">Hide2</button>
+        <button onclick="alert('Thank you');">Click Me</button>
+    </body>
+</html>
