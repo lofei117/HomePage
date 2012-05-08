@@ -1,7 +1,7 @@
 /**
  * @preserve Homepage experience animation functionality.
  * This file includes all functionality to render the countdown
- * clock, and ball physics. Depends on box2d libraries and base.js.
+ * clock, and 'v physics. Depends on box2d libraries and base.js.
  *
  * Vendor provided code. Compressed file for the live site,
  * /events/io/2011/static/js/iobadge.js, can be created by compiling
@@ -10,6 +10,7 @@
  *
  * @author mking@mking.me (Matt King)
  */
+var size = 18.0+2;
 
 if (!window.requestAnimationFrame) {
   /**
@@ -29,10 +30,13 @@ if (!window.requestAnimationFrame) {
 }
 
 /**
- * Anonymous wrapper function, setting up state and firing off draw loop.
+ * The launch function
+ * @param countdownTo The date we are counting to in milli-seconds
+ * @param callback The callback to call when the countdown reach 0
+ * @returns
  */
+var countdownTo = function(countdownTo, callback) {
 
-(function() {
   /**
    * Class Countdown
    * Represents a Countdown, mainly for holding references to Box2d
@@ -63,7 +67,6 @@ if (!window.requestAnimationFrame) {
     this.iterations = 1;
     this.timeStep = 1 / 20;
     this.opts.types = {};
-    
     for (var i = 0; i < this.opts.colors.length; i++) {
       var color = this.opts.colors[i];
       if (color && !this.opts.types[color]) {
@@ -75,7 +78,7 @@ if (!window.requestAnimationFrame) {
     this.opts.types['c9c9c9'] = genDot('c9c9c9',
                                        this.opts.dotType,
                                        this.opts.ctx);
-    this.opts.types['d9d9d9'] = genDot('d9d9d9',
+    this.opts.types['c9c9c9'] = genDot('c9c9c9',
                                        this.opts.dotType,
                                        this.opts.ctx);
     this.opts.types['b6b4b5'] = genDot('b6b4b5',
@@ -164,7 +167,7 @@ if (!window.requestAnimationFrame) {
   Countdown.prototype.createDot = function(x, y, vel) {
     var dotSd = new b2CircleDef();
     dotSd.density = this.dots.density;
-    dotSd.radius = 7;
+    dotSd.radius = (size/2); /** original value = 7*/
     dotSd.restitution = this.dots.restitution;
     dotSd.friction = this.dots.friction;
     var dotBd = new b2BodyDef();
@@ -239,15 +242,15 @@ if (!window.requestAnimationFrame) {
     this.ctx = opts.ctx;
     this.matrix = opts.matrix;
     this.num = opts.num;
-    this.blankColor = opts.blankColor || '#d9d9d9';
+    this.blankColor = opts.blankColor || '#c9c9c9';
     this.activeColor = opts.activeColor;
     this.dots = [];
 
     for (var i = 0; i < this.matrix.length; i++) {
       for (var j = 0; j < this.matrix[i].length; j++) {
         this.dots.push(new Dot({
-          x: this.x + 19 * j,
-          y: this.y + 19 * i,
+          x: this.x + size * j,
+          y: this.y + size * i,
           ctx: this.ctx,
           fillStyle: (this.matrix[i][j] == 1 ?
                       this.activeColor :
@@ -641,6 +644,7 @@ if (!window.requestAnimationFrame) {
   function getDigits() {
     var now = new Date().getTime();
     var dateDiff = Math.floor((countdownTo - now) / 1000);
+
     /**
      * Don't return anything if we're past the countdownTo date.
      */
@@ -664,95 +668,96 @@ if (!window.requestAnimationFrame) {
    * Routine that is run in a loop to draw Digits and Dots.
    */
   function draw() {
-    finale();
-/*
-    //Get digit array as of this cycle in the loop!
+
+    /**
+     * Get digit array as of this cycle in the loop.
+     */
     var digits = getDigits();
 
-    //
-    // Set the virtual cursor to zero. Gets incremented as Digits and Dots
-    //     are draw on ctx.
-    //
-    var cursorX = 0, cursorY = 0;
+    /**
+     * Set the virtual cursor to zero. Gets incremented as Digits and Dots
+     *     are draw on ctx.
+     */
+    var cursorX = 495.0-495, cursorY = 307.0-307;
 
-    //
-    // Reset current digit list to an empty array.
-    // Each digit will be appended to this array.
-    //
+    /**
+     * Reset current digit list to an empty array.
+     * Each digit will be appended to this array.
+     */
     currentDigits = [];
 
-    //
-    // Loop through all digits and generate Digit objects as needed.
-    //
+    /**
+     * Loop through all digits and generate Digit objects as needed.
+     */
     for (var i = 0; i < digits.length; i++) {
 
-      //
-      // Check oldDigits to see if this Digit exists. If so, reuse it.
-      //
+      /**
+       * Check oldDigits to see if this Digit exists. If so, reuse it.
+       */
       if (oldDigits.length > 0 && digits[i] == oldDigits[i].num) {
 
         currentDigits.push(oldDigits[i]);
 
-        //
-        // Increment the cursor based on the Digit value.
-        // Separator (':') gets it's X incremented by 2 widths of Dot,
-        //     otherwise it does the default 5 widths
-        //     (the full width of a Digit).
-        //
+        /**
+         * Increment the cursor based on the Digit value.
+         * Separator (':') gets it's X incremented by 2 widths of Dot,
+         *     otherwise it does the default 5 widths
+         *     (the full width of a Digit).
+         */
         if (digits[i] == ':') {
-          cursorX += (2 * 18);
+          cursorX += (2 * (size-1));
         } else {
-          cursorX += (5 * 19) - 1;
+          cursorX += (5 * size) - 1;
         }
 
       } else {
 
-        //
-        // Separator (':') gets different constructor values.
-        //
+        /**
+         * Separator (':') gets different constructor values.
+         */
         if (digits[i] == ':') {
           currentDigits.push(
             new Digit({
               ctx: ctx,
               x: cursorX,
-              y: 14,
+              y: cursorY,
               num: digits[i],
               matrix: separator,
               activeColor: 'b6b4b5'
             }));
-          cursorX += (2 * 18);
+          cursorX += (2 * (size-1));
         } else {
-          //
-          // Add a new Digit to the currentDigits array.
-          //
+          /**
+           * Add a new Digit to the currentDigits array.
+           */
           currentDigits.push(
             new Digit({
               ctx: ctx,
               x: cursorX,
-              y: 14,
+              y: cursorY,
               num: parseInt(digits[i], 0),
               matrix: numberMatrices[parseInt(digits[i], 0)],
               activeColor: countdown.opts.colors[i],
               blankColor: (i < 4 || i > 9) ?
                           'c9c9c9' :
-                          'd9d9d9',
+                          'c9c9c9',
               successor: oldDigits.length ? oldDigits[i] : null
             }));
-          cursorX += (5 * 19) - 1;
+          cursorX += (5 * size) - 1;
 
         }
-        //
-        // Run the draw routine on the Digit, rendering itself
-        //    on the ctx.
-        //
+        /**
+         * Run the draw routine on the Digit, rendering itself
+         *    on the ctx.
+         */
         currentDigits[i].draw();
 
-        //
-        // If a Digit exist on oldDigits in this position,
-        //     it's ready to be 'discarded', meaning start the
-        //     Dot animation. Append it to the discardedDigits
-        //     array to be looped through again.
-        //
+        /**
+         * If a Digit exist on oldDigits in this position,
+         *     it's ready to be 'discarded', meaning start the
+         *     Dot animation. Append it to the discardedDigits
+         *     array to be looped through again.
+         */
         if (oldDigits.length) {
           var old = oldDigits[i];
           discardedDigits.push(old);
@@ -760,22 +765,22 @@ if (!window.requestAnimationFrame) {
       }
     }
 
-    //
-    // Box2d: step the world an iteration
-    //
+    /**
+     * Box2d: step the world an iteration
+     */
     countdown.step();
 
-    //
-    // Loop through all the discarded digits, and draw. If marked as done,
-    //    reap the Digit to remove it from play.
-    //
+    /**
+     * Loop through all the discarded digits, and draw. If marked as done,
+     *    reap the Digit to remove it from play.
+     */
     for (var j = 0; j < discardedDigits.length; j++) {
       if (discardedDigits[j].done) {
         discardedDigits.splice(j, 1);
       } else {
-        //
-        // Call the remove method to reap dots not going to bounce around.
-        //
+        /**
+         * Call the remove method to reap dots not going to bounce around.
+         */
         if (!discardedDigits[j].removed) {
           discardedDigits[j].remove();
         }
@@ -783,10 +788,10 @@ if (!window.requestAnimationFrame) {
       }
     }
 
-    //
-    // If digits is empty, immediately remove discardedDigits
-    // then start the finale.
-    //
+    /**
+     * If digits is empty, immediately remove discardedDigits
+     * then start the finale.
+     */
     if (digits.length === 0) {
       for (var i = 0; i < discardedDigits.length; i++) {
         discardedDigits[i].forceRemove = true;
@@ -797,15 +802,14 @@ if (!window.requestAnimationFrame) {
       finale();
     }
 
-    //
-    // Assign the currentDigits to oldDigits so the next iteration can
-    // compare the current set to the previous one.
-    //
+    /**
+     * Assign the currentDigits to oldDigits so the next iteration can
+     * compare the current set to the previous one.
+     */
     oldDigits = currentDigits;
     if (!stopDrawing) {
       requestAnimationFrame(draw);
     }
-*/
   }
 
   /**
@@ -813,17 +817,12 @@ if (!window.requestAnimationFrame) {
    * reaches the end.
    */
   var finale = function() {
-    if (isChrome) {
-      io.injectScripts(['assets/js/Three.js',
-                        'assets/js/Tween.js',
-                        'assets/js/countdown-entities.js'],
-                       function() {
-                         io.el('wrapper').style.background =  'none';
-                         io.el('canvas-content').innerHTML = '';
-                         io.injectScript('assets/js/countdown-finale.js');
-                       });
-    }
-  };
+      if (callback) {
+         io.el('wrapper').style.background =  'none';
+         io.el('canvas-content').innerHTML = '';
+         callback();
+       }
+      };
 
   /**
    * Nullify references to Digits and Box2d objects, run onunload
@@ -835,11 +834,6 @@ if (!window.requestAnimationFrame) {
     countdown.unload();
     countdown = null;
   };
-
-  /**
-   * Get the date we're counting down to.
-   */
-  var countdownTo = new Date().getTime() + 20000;
 
   /**
    * Buckets for the Digits.
@@ -884,7 +878,7 @@ if (!window.requestAnimationFrame) {
    * Default Countdown.
    */
   countdownConfigs.push({
-    gravity: { x: 0, y: 400 },
+    gravity: { x: 0.0, y: 400.0 },
     colors: ['265897', '265897', '265897', '',
              '13acfa', '13acfa', '',
              'c0000b', 'c0000b', '',
@@ -892,15 +886,15 @@ if (!window.requestAnimationFrame) {
     dotType: 'ball',
     surface: {
       density: 1.0,
-      restitution: 1.0,
+      restitution: 0.1,
       friction: 0
     },
     dots: {
       density: 0.3,
-      restitution: 0.5,
+      restitution: 0.1,
       friction: 0.1,
-      highVelocity: 1000,
-      lowVelocity: 300
+      highVelocity: 1000.0,
+      lowVelocity: 300.0
     },
     bounds: getPos(ctx),
     condition: function() {
@@ -915,14 +909,12 @@ if (!window.requestAnimationFrame) {
    *    true by calling the condition function gets picked to display.
    */
   var countdown;
-
   for (var i = 0; i < countdownConfigs.length; i++) {
     if (countdownConfigs[i].condition.call() === true) {
       countdown = new Countdown(countdownConfigs[i]);
       if (countdownConfigs[i].behavior) {
         countdownConfigs[i].behavior.call();
       }
-
       break;
     }
   }
@@ -934,4 +926,4 @@ if (!window.requestAnimationFrame) {
 
   draw();
 
-}());
+};
