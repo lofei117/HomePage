@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>简明开发文档</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="50">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="./index.html">浮图推送服务</a>
+          <div class="btn-group pull-right">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              Void Main
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Sign Out</a></li>
+            </ul>
+          </div>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="./index.html">首页</a></li>
+              <li><a href="./introduction.html">介绍</a></li>
+              <li class="active"><a href="#">文档</a></li>
+              <li><a href="#contact">关于</a></li>
+              <li><a href="#developer">开发者</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <header class="jumbotron subhead">
+        <h1>如何使用浮图推送服务</h1>
+        <p class="lead">通过简单的教程让您了解使用浮图推送服务进行移动应用开发究竟有多简单！</p>
+        <div class="subnav">
+          <ul class="nav nav-pills">
+            <li><a href="#login_register">注册&amp;登陆</a></li>
+            <li><a href="#create_project">新建应用</a></li>
+            <li><a href="#setup_project">设置项目属性</a></li>
+            <li><a href="#process_message">处理推送消息</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <div class="row">
+        <div class="span12">
+          <div id="login_register">
+            <h1>注册&amp;登陆</h1>
+            <p>随着信息时代的到来,人们正沉浸在海量数据之中,如何尽可能快的得到自己需要的数据变成了一个较为重要的问题。</p>
+            <p>同时,随着手持设备,尤其是智能手机的普及,人们越来越多的依赖于自己的手机来获取实时的消息。在公交、地铁等公共交通工具上、在餐厅内、甚至在卫生间内,都能看到人们在把玩自己的手机。</p>
+          </div>
+          <div id="create_project">
+            <h1>新建应用</h1>
+            <p>人们使用手机的目的各有不同,但大致可以分为与他人保持联系、消磨时光以及获取需要的咨询等。对于那些希望通过手机获取资讯的用户来说,消息的实时性就变得尤其重要。</p>
+            <p>对于移动开发者来说,如何确保将消息实时的传递给用户就成了一个值得研究的问题。</p>
+          </div>
+          <div id="setup_project">
+            <h1>设置项目属性</h1>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+          </div>
+          <div id="process_message">
+            <h1>处理推送消息</h1>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+            <p>从技术实现角度来讲,大致可以分为两类,一类是不断的发送更新请求,或者称之为“轮询”方式;而另外一类则是由服务端在发生改变的时候,主动将消息推送给客户端的用户,这种方式称为“推送”。</p>
+            <p>对比这二者,“轮询”的方式实现起来比较简单,在客户端方面,可以设置一个时间间隔,每隔一段时间就向服务端发起一次消息请求,要求获取最新的数据,服务端将最新的数据通过 HTTP等方式发送给客户端,客户端进行解析,并将结果显示出来。这种方式实现起来较为简单,但是存在诸多问题。首先,为了保证实时性,客户端的时间间隔就不可以过长,但是如果时间间隔较短,那么就会造成大量的数据流量,如果用户使用的是GPRS上网,那将产生大量的通讯费用,这显然是用户不能接受的;另一方面,作为手持设备,手机的电量非常宝贵,每一次的数据连接必然会加速电量的耗费,加速手机电池耗尽,这一方面可能影响用户正常使用手机,另一方面,也不符合当前“低碳” 环保的目标。</p>
+            <p>而对于“推送”的实现方式,情况则要好的多。由于推送系统中采用的是长连接,只有服务端有消息要发送给客户端的时候,才会进行消息的发送,这一方面大幅度减少了通讯流量,另一方面,也节省了手机的电量。综合这两者的比较,我们选择使用推送的方式来解决将消息及时提供给终端用户的问题。</p>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer class="pull-right">
+        <p>&copy; 浮图实验室 2012</p>
+      </footer>
+    
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/application.js"></script>
+
+  </body>
+</html>
