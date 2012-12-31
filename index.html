@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Void Main - The Portal</title>
-  <script src="js/three.min.js"></script>
+<title>Void Main - The Portal</title>
+
+  <link href="./css/main.css" rel="stylesheet" />
+  <script src="./js/Three.js"></script>
+  <script src="./js/jquery-1.6.4.js"></script>
+  <script src="./js/jquery.mousewheel.js"></script>
+  <script src="./js/RequestAnimationFrame.js"></script>
+  <script src="./js/Tween.js"></script>
+  <script src="./js/sim/sim.js"></script>
+  <script src="./js/sim/animation.js"></script>
+  <script src="./js/scene.js"></script>
   <script>
-  function onLoad() {
-    var container = document.getElementById("container");
 
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize(container.offsetWidth, container.offsetHeight);
-    container.appendChild(renderer.domElement);
+  var renderer = null;
+  var scene = null;
+  var camera = null;
+  var mesh = null;
 
-    var scene = new THREE.Scene();
-
-    var camera = new THREE.PerspectiveCamera(45, container.offsetWidth / container.offsetHeight, 1, 4000);
-    camera.position.set(0, 0, 3.3333);
-    scene.add(camera);
-
-    var geometry = new THREE.PlaneGeometry(1, 1);
-    var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial());
-    scene.add(mesh);
-
-    renderer.render(scene, camera);
-  }
+  $(document).ready(
+    function() {
+      var container = document.getElementById("container");
+      var app = new InteractionApp();
+      app.init({ container: container });
+      app.run();
+    }
+  );
   </script>
+
 </head>
-<body onLoad="onLoad();">
-  <div id="container" style="width:500px; height:500px; background-color:#000000">
+<body>
+  <div id="container" style="width:95%; height:80%; position:absolute;">
+    <center><h1>Hi, I'm Void Main</h1></center>
+    <a id="ID_GITHUB" href="http://www.github.com/void-main" title="GitHub">./img/github.jpg</a>
+    <a id="ID_DOUBAN" href="http://www.douban.com/people/iamvoidmain/" title="豆瓣">./img/douban.jpg</a>
+    <a id="ID_RENREN" href="http://www.renren.com/248292720/profile" title="人人">./img/renren.jpg</a>
   </div>
 </body>
 </html>
