@@ -142,5 +142,5 @@ Control.prototype.rotateControl = function()
 
 Control.prototype.handleMouseDown = function(x, y, position)
 {
-  window.location.replace(this.url);
+  window.location.href = this.url;
 }
