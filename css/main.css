@@ -1,17 +1,61 @@
-* {
-    font-family: Arial;
-    font-style: italic;
+h1{
+	font-family:Arial;
+	font-style:italic
 }
-
-body {
-  background-color:#eeeeee;
-  color:#212121;
+body{
+	background-color:#eeeeee;
+	color:#212121;
+	overflow:hidden
 }
-
-#container {
-  z-index:-1;
+#main_div{
+	position:absolute;
+	width:100%;
+	height:100%
 }
-
-#container a {
-  display: none;
+#cube_div{
+	z-index:100;
+	position:absolute;
+	width:38.2%;
+	height:90%
+}
+#cube_div a{
+	display:none
+}
+#about_div{
+	position:absolute;
+	left:38.2%;
+	width:61.8%;
+	height:90%
+}
+img{
+	border:5px double #666699;
+	border-radius:8px;
+	border-width:0px;
+	background-color:transparent
+}
+#aboutme_div{
+	position:absolute;
+	top:12%;
+	width:85.6mm;
+	height:54mm;
+	border:3px double #666699;
+	border-radius:8px;
+	background-color:transparent
+}
+.text{
+	font-family:"Verdana";
+	font-size:12px;
+	line-height:16px;
+	color:#666699;
+	text-decoration:none
+}
+#footer{
+	position:absolute;
+	top:92%;
+	height:10%;
+	width:100%;
+	font-style:normal;
+	font-size:12px;
+	color:#666;
+	text-align:center
 }

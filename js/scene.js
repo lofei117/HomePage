@@ -26,14 +26,14 @@ InteractionApp.prototype.init = function(param)
   light.position.set(0, 0, 10);
   this.scene.add(light);
 
-  this.camera.position.set(0, 1, 8);
+  this.camera.position.set(0, 2, 12);
   this.camera.lookAt(this.root);
 
   this.controls = [];
 
   var outer_this = this;
 
-  $('#container a').each(function(index, element) {
+  $('#cube_div a').each(function(index, element) {
     id = element['id'];
     icon = element['innerHTML'];
     title = element['title'];
@@ -42,6 +42,7 @@ InteractionApp.prototype.init = function(param)
     control.init({ 'id' : id, 'icon' : icon,  'url' : url, 'title' : title});
     outer_this.addObject(control);
     outer_this.controls.push(control);
+  //  console.log(control);
   });
 
   this.layoutControls();
@@ -56,16 +57,18 @@ InteractionApp.prototype.layoutControls = function()
   var y = 0;
 
   var nControls = this.controls.length;
-  var left = (nControls - 1 )/ 2 * -scale;
+  var top = (nControls - 1 )/ 2 * scale;
 
   var i;
 
-  x = left;
-  y = z = 0;
+  y = top;
+  x = 0;
+  z = 0;
+
   for (i = 0; i < nControls; i++)
   {
     this.controls[i].setPosition(x, y, z);
-    x += scale;
+    y -= 1.5;
   }
 }
 
@@ -96,11 +99,12 @@ Control.prototype.init = function(param)
 
   var icon = param.icon || '';
   var map = THREE.ImageUtils.loadTexture(icon);
+  var edge = 0.8;
 
   var material = new THREE.MeshPhongMaterial({ map: map });
 
   // Create the cube geometry
-  var geometry = new THREE.CubeGeometry(1, 1, 1);
+  var geometry = new THREE.CubeGeometry(edge, edge, edge);
 
   // And put the geometry and material together into a mesh
   mesh = new THREE.Mesh(geometry, material);

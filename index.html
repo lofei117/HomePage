@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Void Main - The Portal</title>
+  <meta charset="utf-8">
+<title>It's not a game. It's The Game.</title>
 
   <link href="./css/main.css" rel="stylesheet" />
   <script src="./js/Three.js"></script>
@@ -21,7 +22,7 @@
 
   $(document).ready(
     function() {
-      var container = document.getElementById("container");
+      var container = document.getElementById("cube_div");
       var app = new InteractionApp();
       app.init({ container: container });
       app.run();
@@ -31,11 +32,55 @@
 
 </head>
 <body>
-  <div id="container" style="width:95%; height:80%; position:absolute;">
-    <center><h1>Hi, I'm Void Main</h1></center>
-    <a id="ID_GITHUB" href="http://www.github.com/void-main" title="GitHub">./img/github.jpg</a>
-    <a id="ID_DOUBAN" href="http://www.douban.com/people/iamvoidmain/" title="豆瓣">./img/douban.jpg</a>
-    <a id="ID_RENREN" href="http://www.renren.com/248292720/profile" title="人人">./img/renren.jpg</a>
+  <div id="main_div">
+    <center><h1>Hi, I'm lofei</h1></center>
+    <div id="cube_div">
+      <a id="ID_GITHUB" href="http://www.github.com/lofei117" title="GitHub">./img/github.jpg</a>
+      <a id="ID_DOUBAN" href="http://blog.lofei.info/" title="博客">./img/wpblog.jpg</a>
+      <a id="ID_RENREN" href="http://www.renren.com/268259670/profile" title="人人">./img/renren.jpg</a>
+      <a id="ID_WEIBO" href="http://weibo.com/amyasmile/" title="微博">./img/weibo.jpg</a>
+    </div>
+    <div id="about_div">
+     <div id="aboutme_div">    
+      <div style="position:absolute;right:8%;top:10%">
+        <img src="./img/erbi.jpg" width="90" height="120"/>
+      </div>
+      <div style="position:absolute;left:10%;top:12%">
+        <span class="text">姓&nbsp;名：lofei</span>
+      </div>
+      <div style="position:absolute;left:10%;top:25%">
+        <span class="text">性&nbsp;别：男</span>
+      </div>
+      <div style="position:absolute;left:30%;top:25%">
+        <span class="text">民&nbsp;族：汉</span>
+      </div>
+      <div style="position:absolute;left:10%;top:38%">
+        <span class="text">出&nbsp;生：19xx&nbsp;年&nbsp;x&nbsp;月&nbsp;x&nbsp;日</span>
+      </div>
+      <div style="position:absolute;left:10%;top:50%">
+           <span class="text">地&nbsp;址：&nbsp;▉▉▉▉▉▉▉▉▉▉</span>
+            <br><span class="text" style="margin-left:25%;"> ▉▉▉▉▉▉</span>    
+      </div>
+      <div style="position:absolute;left:10%;top:80%">
+           <span class="text">二逼身份号码&nbsp;&nbsp;&nbsp;222222222222222222</span>             
+      </div>
+     </div>
+     <div style="position:absolute;left:3%;top:55%">
+           <span class="text">欢迎来到这里， 博主是一个文艺型二逼青年。 喜欢骑车
+            <br>旅行， 喜欢读书， 喜欢研究厨艺等美食制作（当然你懂的）.
+            <br>最近的愿想：每天坚持学习 &amp; 7月骑车毕业旅行
+            <br>如果你也有以上任何一个爱好而不是心血来潮， 欢迎联系我
+            <br>←_←
+           </span>             
+      </div>
+    </div>
+    <div id="footer">
+      <center>
+      Inspired by <a href="http://voidmain.me" target="_blank">voidmain.me</a>.<br>
+      Copyright © 2013 <a href="http://lofei.info">lofei.info</a> 2013
+      </center>
+    </div>
+
   </div>
 </body>
 </html>

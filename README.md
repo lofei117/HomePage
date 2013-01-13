@@ -1,5 +1,6 @@
-# Void Main's Personal Page
+# lofei's Personal Page
 
-*By Void Main*
+*Inpired by Void Main*
+*Modified by lofei*
 
 ## This is nothing more than a portal.
