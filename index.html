@@ -22,10 +22,29 @@
 
   $(document).ready(
     function() {
-      var container = document.getElementById("cube_div");
-      var app = new InteractionApp();
-      app.init({ container: container });
-      app.run();
+      if (typeof(Worker) !== "undefined") {
+        var container = document.getElementById("cube_div");
+        var app = new InteractionApp();
+        app.init({ container: container });
+        app.run();
+      } else{       
+        $("#cube_div a").each(function(){
+          var that=$(this);
+          var p=$("<p/>").css({
+            "margin-left":100
+          }).appendTo("#cube_div");
+          $("<img/>").attr({
+            width:80,
+            height:80,
+            src:that.html()
+          }).click(function(){
+            location.href=that.attr("href");
+          }).css({
+            cursor:"hand"
+          }).appendTo(p);          
+        });
+      }
+     
     }
   );
   </script>
